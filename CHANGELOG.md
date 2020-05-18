@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Added downloading per month badge from [@grogy](https://github.com/grogy).
 - Added license badge from [@grogy](https://github.com/grogy).
+- Added instruction for installation from [@grogy](https://github.com/grogy).
 
 ## [0.3] - 2020-05-14
 
