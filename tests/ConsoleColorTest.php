@@ -1,5 +1,6 @@
 <?php
 use JakubOnderka\PhpConsoleColor\ConsoleColor;
+use PHPUnit\Framework\TestCase;
 
 class ConsoleColorWithForceSupport extends ConsoleColor
 {
@@ -28,7 +29,7 @@ class ConsoleColorWithForceSupport extends ConsoleColor
     }
 }
 
-class ConsoleColorTest extends \PHPUnit_Framework_TestCase
+class ConsoleColorTest extends TestCase
 {
     /** @var ConsoleColorWithForceSupport */
     private $uut;
@@ -146,25 +147,25 @@ class ConsoleColorTest extends \PHPUnit_Framework_TestCase
 
     public function testApplyInvalidArgument()
     {
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->exceptionHelper('\InvalidArgumentException');
         $this->uut->apply(new stdClass(), 'text');
     }
 
     public function testApplyInvalidStyleName()
     {
-        $this->setExpectedException('\JakubOnderka\PhpConsoleColor\InvalidStyleException');
+        $this->exceptionHelper('\JakubOnderka\PhpConsoleColor\InvalidStyleException');
         $this->uut->apply('invalid', 'text');
     }
 
     public function testApplyInvalid256Color()
     {
-        $this->setExpectedException('\JakubOnderka\PhpConsoleColor\InvalidStyleException');
+        $this->exceptionHelper('\JakubOnderka\PhpConsoleColor\InvalidStyleException');
         $this->uut->apply('color_2134', 'text');
     }
 
     public function testThemeInvalidStyle()
     {
-        $this->setExpectedException('\JakubOnderka\PhpConsoleColor\InvalidStyleException');
+        $this->exceptionHelper('\JakubOnderka\PhpConsoleColor\InvalidStyleException');
         $this->uut->addTheme('invalid', array('invalid'));
     }
 
@@ -179,6 +180,24 @@ class ConsoleColorTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertInternalType('array', $this->uut->getPossibleStyles());
         $this->assertNotEmpty($this->uut->getPossibleStyles());
+    }
+
+    public function exceptionHelper($exception, $msg = null)
+    {
+        if (\method_exists($this, 'expectException')) {
+            // PHPUnit 5+.
+            $this->expectException($exception);
+            if (isset($msg)) {
+                $this->expectExceptionMessage($msg);
+            }
+        } else {
+            // PHPUnit 4.
+            if (isset($msg)) {
+                $this->setExpectedException($exception, $msg);
+            } else {
+                $this->setExpectedException($exception);
+            }
+        }
     }
 }
 
