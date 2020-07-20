@@ -33,7 +33,13 @@ cache:
     - $HOME/.composer/cache
 
 before_script:
-  - composer install --no-interaction --prefer-source
+  - |
+    if [[ $TRAVIS_PHP_VERSION != "nightly" ]]; then
+      composer install --no-suggest --no-interaction
+    else
+      # Ignore platform requirements to allow PHPUnit to install on PHP 8.
+      composer install --no-suggest --no-interaction --ignore-platform-reqs
+    fi
 
 script:
   - ant phplint
