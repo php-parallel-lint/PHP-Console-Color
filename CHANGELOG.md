@@ -12,6 +12,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Added license badge from [@grogy](https://github.com/grogy).
 - Added instruction for installation from [@grogy](https://github.com/grogy).
 
+### Internal
+
+- Updated PHP Parallel Lint dependency version restraint [#8](https://github.com/php-parallel-lint/PHP-Console-Color/pull/8) from [@jrfnl](https://github.com/jrfnl).
+
 ## [0.3] - 2020-05-14
 
 ### Added
