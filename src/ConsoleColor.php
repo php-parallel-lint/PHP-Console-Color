@@ -1,5 +1,5 @@
 <?php
-namespace JakubOnderka\PhpConsoleColor;
+namespace PHP_Parallel_Lint\PhpConsoleColor;
 
 class ConsoleColor
 {
