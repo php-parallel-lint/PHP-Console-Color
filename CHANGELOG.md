@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- BC-Break: The top-level namespace for all classes has changed from `JakubOnderka` to `PHP_Parallel_Lint`. [#10](https://github.com/php-parallel-lint/PHP-Console-Color/pull/10) from [@grogy](https://github.com/grogy).
+
 ### Added
 
 - Added downloading per month badge from [@grogy](https://github.com/grogy).

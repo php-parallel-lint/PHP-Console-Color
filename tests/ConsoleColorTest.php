@@ -1,5 +1,7 @@
 <?php
-use JakubOnderka\PhpConsoleColor\ConsoleColor;
+namespace PHP_Parallel_Lint\PhpConsoleColor\Test;
+
+use PHP_Parallel_Lint\PhpConsoleColor\ConsoleColor;
 use PHPUnit\Framework\TestCase;
 
 class ConsoleColorWithForceSupport extends ConsoleColor
@@ -148,24 +150,24 @@ class ConsoleColorTest extends TestCase
     public function testApplyInvalidArgument()
     {
         $this->exceptionHelper('\InvalidArgumentException');
-        $this->uut->apply(new stdClass(), 'text');
+        $this->uut->apply(new \stdClass(), 'text');
     }
 
     public function testApplyInvalidStyleName()
     {
-        $this->exceptionHelper('\JakubOnderka\PhpConsoleColor\InvalidStyleException');
+        $this->exceptionHelper('\PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException');
         $this->uut->apply('invalid', 'text');
     }
 
     public function testApplyInvalid256Color()
     {
-        $this->exceptionHelper('\JakubOnderka\PhpConsoleColor\InvalidStyleException');
+        $this->exceptionHelper('\PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException');
         $this->uut->apply('color_2134', 'text');
     }
 
     public function testThemeInvalidStyle()
     {
-        $this->exceptionHelper('\JakubOnderka\PhpConsoleColor\InvalidStyleException');
+        $this->exceptionHelper('\PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException');
         $this->uut->addTheme('invalid', array('invalid'));
     }
 
