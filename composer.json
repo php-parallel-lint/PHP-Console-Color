@@ -1,5 +1,6 @@
 {
     "name": "php-parallel-lint/php-console-color",
+    "description": "Simple library for creating colored console ouput.",
     "license": "BSD-2-Clause",
     "authors": [
         {
