@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+
+### Internal
+- Travis: add build against PHP 8.0 [#12](https://github.com/php-parallel-lint/PHP-Console-Color/pull/12) from [@jrfnl](https://github.com/jrfnl).
+
 ## [1.0] - 2020-10-31
 
 ### Changed
