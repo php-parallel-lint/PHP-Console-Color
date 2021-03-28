@@ -44,5 +44,4 @@ before_script:
 
 script:
   - ant phplint
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.4" ]]; then ant phpcs;fi
   - ant phpunit
