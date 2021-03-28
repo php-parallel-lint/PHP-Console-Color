@@ -36,7 +36,10 @@ class ConsoleColorTest extends TestCase
     /** @var ConsoleColorWithForceSupport */
     private $uut;
 
-    protected function setUp()
+    /**
+     * @before
+     */
+    protected function setUpConsoleColor()
     {
         $this->uut = new ConsoleColorWithForceSupport();
     }
@@ -180,7 +183,13 @@ class ConsoleColorTest extends TestCase
 
     public function testGetPossibleStyles()
     {
-        $this->assertInternalType('array', $this->uut->getPossibleStyles());
+        if (\method_exists($this, 'assertIsArray')) {
+            // PHPUnit 7.5+.
+            $this->assertIsArray($this->uut->getPossibleStyles());
+        } else {
+            // PHPUnit < 7.5.
+            $this->assertInternalType('array', $this->uut->getPossibleStyles());
+        }
         $this->assertNotEmpty($this->uut->getPossibleStyles());
     }
 
