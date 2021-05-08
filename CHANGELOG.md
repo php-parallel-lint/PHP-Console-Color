@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Internal
 - Travis: add build against PHP 8.0 [#12](https://github.com/php-parallel-lint/PHP-Console-Color/pull/12) from [@jrfnl](https://github.com/jrfnl).
+- PHPCS: various improvements [#13](https://github.com/php-parallel-lint/PHP-Console-Color/pull/13) from [@jrfnl](https://github.com/jrfnl).
+- PHPUnit: improve configuration [#14](https://github.com/php-parallel-lint/PHP-Console-Color/pull/14) from [@jrfnl](https://github.com/jrfnl).
 
 ## [1.0] - 2020-10-31
 
