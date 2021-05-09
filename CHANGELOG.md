@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - PHPCS: various improvements [#13](https://github.com/php-parallel-lint/PHP-Console-Color/pull/13) from [@jrfnl](https://github.com/jrfnl).
 - PHPUnit: improve configuration [#14](https://github.com/php-parallel-lint/PHP-Console-Color/pull/14) from [@jrfnl](https://github.com/jrfnl).
 - PHPUnit: use annotations for fixtures / cross-version compat up to PHPUnit 9.x [#16](https://github.com/php-parallel-lint/PHP-Console-Color/pull/16) from [@jrfnl](https://github.com/jrfnl).
+- CI: switch to GH Actions [#17](https://github.com/php-parallel-lint/PHP-Console-Color/pull/17) from [@jrfnl](https://github.com/jrfnl).
 
 ## [1.0] - 2020-10-31
 
