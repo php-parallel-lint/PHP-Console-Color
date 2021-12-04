@@ -123,6 +123,28 @@ class ConsoleColorTest extends TestCase
         $this->assertSame("\033[1;2;3mtext\033[0m", $output);
     }
 
+    /**
+     * @covers ::getThemes
+     */
+    public function testGetThemes()
+    {
+        $this->assertSame(array(), $this->uut->getThemes());
+
+        $this->uut->addTheme('bold_dark', array('bold', 'dark'));
+        $this->uut->addTheme('dark_italic', array('dark', 'italic'));
+
+        $themes = $this->uut->getThemes();
+        if (\method_exists($this, 'assertIsArray')) {
+            // PHPUnit 7.5+.
+            $this->assertIsArray($themes);
+        } else {
+            // PHPUnit < 7.5.
+            $this->assertInternalType('array', $themes);
+        }
+
+        $this->assertCount(2, $themes);
+    }
+
     public function testHasAndRemoveTheme()
     {
         $this->assertFalse($this->uut->hasTheme('bold_dark'));
