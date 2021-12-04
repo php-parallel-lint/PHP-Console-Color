@@ -106,6 +106,16 @@ class ConsoleColorTest extends TestCase
         $this->assertSame("\033[1;2mtext\033[0m", $output);
     }
 
+    /**
+     * @covers ::addTheme
+     */
+    public function testAddOwnThemeInvalidInput()
+    {
+        $this->exceptionHelper('\InvalidArgumentException', 'Style must be string or array.');
+
+        $this->uut->addTheme('invalid', new \ArrayIterator(array('bold', 'dark')));
+    }
+
     public function testOwnWithStyle()
     {
         $this->uut->addTheme('bold_dark', array('bold', 'dark'));
