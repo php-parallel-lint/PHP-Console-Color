@@ -5,6 +5,10 @@ use PHP_Parallel_Lint\PhpConsoleColor\ConsoleColor;
 use PHP_Parallel_Lint\PhpConsoleColor\Test\Fixtures\ConsoleColorWithForceSupport;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversDefaultClass \PHP_Parallel_Lint\PhpConsoleColor\ConsoleColor
+ * @covers ::__construct
+ */
 class ConsoleColorTest extends TestCase
 {
     /** @var ConsoleColorWithForceSupport */
@@ -18,18 +22,28 @@ class ConsoleColorTest extends TestCase
         $this->uut = new ConsoleColorWithForceSupport();
     }
 
+    /**
+     * @covers ::apply
+     */
     public function testNone()
     {
         $output = $this->uut->apply('none', 'text');
         $this->assertSame("text", $output);
     }
 
+    /**
+     * @covers ::apply
+     * @covers ::escSequence
+     */
     public function testBold()
     {
         $output = $this->uut->apply('bold', 'text');
         $this->assertSame("\033[1mtext\033[0m", $output);
     }
 
+    /**
+     * @covers ::apply
+     */
     public function testBoldColorsAreNotSupported()
     {
         $this->uut->setIsSupported(false);
@@ -38,6 +52,10 @@ class ConsoleColorTest extends TestCase
         $this->assertSame("text", $output);
     }
 
+    /**
+     * @covers ::apply
+     * @covers ::setForceStyle
+     */
     public function testBoldColorsAreNotSupportedButAreForced()
     {
         $this->uut->setIsSupported(false);
@@ -47,24 +65,41 @@ class ConsoleColorTest extends TestCase
         $this->assertSame("\033[1mtext\033[0m", $output);
     }
 
+    /**
+     * @covers ::apply
+     * @covers ::escSequence
+     */
     public function testDark()
     {
         $output = $this->uut->apply('dark', 'text');
         $this->assertSame("\033[2mtext\033[0m", $output);
     }
 
+    /**
+     * @covers ::apply
+     * @covers ::escSequence
+     */
     public function testBoldAndDark()
     {
         $output = $this->uut->apply(array('bold', 'dark'), 'text');
         $this->assertSame("\033[1;2mtext\033[0m", $output);
     }
 
+    /**
+     * @covers ::apply
+     * @covers ::styleSequence
+     * @covers ::escSequence
+     */
     public function test256ColorForeground()
     {
         $output = $this->uut->apply('color_255', 'text');
         $this->assertSame("\033[38;5;255mtext\033[0m", $output);
     }
 
+    /**
+     * @covers ::apply
+     * @covers ::styleSequence
+     */
     public function test256ColorWithoutSupport()
     {
         $this->uut->setAre256ColorsSupported(false);
@@ -73,18 +108,32 @@ class ConsoleColorTest extends TestCase
         $this->assertSame("text", $output);
     }
 
+    /**
+     * @covers ::apply
+     * @covers ::styleSequence
+     * @covers ::escSequence
+     */
     public function test256ColorBackground()
     {
         $output = $this->uut->apply('bg_color_255', 'text');
         $this->assertSame("\033[48;5;255mtext\033[0m", $output);
     }
 
+    /**
+     * @covers ::apply
+     * @covers ::styleSequence
+     * @covers ::escSequence
+     */
     public function test256ColorForegroundAndBackground()
     {
         $output = $this->uut->apply(array('color_200', 'bg_color_255'), 'text');
         $this->assertSame("\033[38;5;200;48;5;255mtext\033[0m", $output);
     }
 
+    /**
+     * @covers ::setThemes
+     * @covers ::themeSequence
+     */
     public function testSetOwnTheme()
     {
         $this->uut->setThemes(array('bold_dark' => array('bold', 'dark')));
@@ -92,6 +141,10 @@ class ConsoleColorTest extends TestCase
         $this->assertSame("\033[1;2mtext\033[0m", $output);
     }
 
+    /**
+     * @covers ::addTheme
+     * @covers ::themeSequence
+     */
     public function testAddOwnTheme()
     {
         $this->uut->addTheme('bold_own', 'bold');
@@ -99,6 +152,11 @@ class ConsoleColorTest extends TestCase
         $this->assertSame("\033[1mtext\033[0m", $output);
     }
 
+    /**
+     * @covers ::apply
+     * @covers ::addTheme
+     * @covers ::themeSequence
+     */
     public function testAddOwnThemeArray()
     {
         $this->uut->addTheme('bold_dark', array('bold', 'dark'));
@@ -116,6 +174,13 @@ class ConsoleColorTest extends TestCase
         $this->uut->addTheme('invalid', new \ArrayIterator(array('bold', 'dark')));
     }
 
+    /**
+     * @covers ::apply
+     * @covers ::addTheme
+     * @covers ::themeSequence
+     * @covers ::styleSequence
+     * @covers ::isValidStyle
+     */
     public function testOwnWithStyle()
     {
         $this->uut->addTheme('bold_dark', array('bold', 'dark'));
@@ -145,6 +210,10 @@ class ConsoleColorTest extends TestCase
         $this->assertCount(2, $themes);
     }
 
+    /**
+     * @covers ::hasTheme
+     * @covers ::removeTheme
+     */
     public function testHasAndRemoveTheme()
     {
         $this->assertFalse($this->uut->hasTheme('bold_dark'));
@@ -156,30 +225,50 @@ class ConsoleColorTest extends TestCase
         $this->assertFalse($this->uut->hasTheme('bold_dark'));
     }
 
+    /**
+     * @covers ::apply
+     */
     public function testApplyInvalidArgument()
     {
         $this->exceptionHelper('\InvalidArgumentException');
         $this->uut->apply(new \stdClass(), 'text');
     }
 
+    /**
+     * @covers ::apply
+     * @covers \PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException
+     */
     public function testApplyInvalidStyleName()
     {
         $this->exceptionHelper('\PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException');
         $this->uut->apply('invalid', 'text');
     }
 
+    /**
+     * @covers ::apply
+     * @covers \PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException
+     */
     public function testApplyInvalid256Color()
     {
         $this->exceptionHelper('\PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException');
         $this->uut->apply('color_2134', 'text');
     }
 
+    /**
+     * @covers ::addTheme
+     * @covers ::isValidStyle
+     * @covers \PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException
+     */
     public function testThemeInvalidStyle()
     {
         $this->exceptionHelper('\PHP_Parallel_Lint\PhpConsoleColor\InvalidStyleException');
         $this->uut->addTheme('invalid', array('invalid'));
     }
 
+    /**
+     * @covers ::setForceStyle
+     * @covers ::isStyleForced
+     */
     public function testForceStyle()
     {
         $this->assertFalse($this->uut->isStyleForced());
@@ -187,6 +276,9 @@ class ConsoleColorTest extends TestCase
         $this->assertTrue($this->uut->isStyleForced());
     }
 
+    /**
+     * @covers ::getPossibleStyles
+     */
     public function testGetPossibleStyles()
     {
         if (\method_exists($this, 'assertIsArray')) {
