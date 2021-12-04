@@ -196,6 +196,8 @@ class ConsoleColor
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return bool
      */
     public function isSupported()
@@ -213,6 +215,8 @@ class ConsoleColor
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return bool
      */
     public function are256ColorsSupported()
