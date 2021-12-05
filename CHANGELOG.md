@@ -65,6 +65,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Travis: only run PHPCS on PHP 7.4 from [@jrfnl].
 
 
+[Unreleased]: https://github.com/php-parallel-lint/PHP-Console-Color/compare/v1.0...HEAD
+[1.0]: https://github.com/php-parallel-lint/PHP-Console-Color/compare/v0.3...v1.0
+[0.3]: https://github.com/php-parallel-lint/PHP-Console-Color/compare/v0.2...v0.3
+
 [@grogy]: https://github.com/grogy
 [@jrfnl]: https://github.com/jrfnl
 [@reedy]: https://github.com/reedy
