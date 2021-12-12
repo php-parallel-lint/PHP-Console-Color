@@ -1,4 +1,5 @@
 <?php
+
 namespace PHP_Parallel_Lint\PhpConsoleColor;
 
 class ConsoleColor
@@ -99,7 +100,7 @@ class ConsoleColor
         foreach ($style as $s) {
             if (isset($this->themes[$s])) {
                 $sequences = array_merge($sequences, $this->themeSequence($s));
-            } else if ($this->isValidStyle($s)) {
+            } elseif ($this->isValidStyle($s)) {
                 $sequences[] = $this->styleSequence($s);
             } else {
                 throw new InvalidStyleException($s);
@@ -203,6 +204,7 @@ class ConsoleColor
     public function isSupported()
     {
         if (DIRECTORY_SEPARATOR === '\\') {
+            // phpcs:ignore Generic.PHP.NoSilencedErrors,PHPCompatibility.FunctionUse.NewFunctions.sapi_windows_vt100_supportFound
             if (function_exists('sapi_windows_vt100_support') && @sapi_windows_vt100_support(STDOUT)) {
                 return true;
             } elseif (getenv('ANSICON') !== false || getenv('ConEmuANSI') === 'ON') {
@@ -210,6 +212,7 @@ class ConsoleColor
             }
             return false;
         } else {
+            // phpcs:ignore Generic.PHP.NoSilencedErrors
             return function_exists('posix_isatty') && @posix_isatty(STDOUT);
         }
     }
@@ -222,6 +225,7 @@ class ConsoleColor
     public function are256ColorsSupported()
     {
         if (DIRECTORY_SEPARATOR === '\\') {
+            // phpcs:ignore Generic.PHP.NoSilencedErrors,PHPCompatibility.FunctionUse.NewFunctions.sapi_windows_vt100_supportFound
             return function_exists('sapi_windows_vt100_support') && @sapi_windows_vt100_support(STDOUT);
         } else {
             return strpos(getenv('TERM'), '256color') !== false;

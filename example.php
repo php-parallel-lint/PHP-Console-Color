@@ -1,4 +1,5 @@
 <?php
+
 $loader = require_once __DIR__ . '/vendor/autoload.php';
 
 $consoleColor = new PHP_Parallel_Lint\PhpConsoleColor\ConsoleColor();

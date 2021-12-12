@@ -1,4 +1,5 @@
 <?php
+
 namespace PHP_Parallel_Lint\PhpConsoleColor\Test\Fixtures;
 
 use PHP_Parallel_Lint\PhpConsoleColor\ConsoleColor;
