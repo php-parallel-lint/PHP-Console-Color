@@ -1,4 +1,5 @@
 <?php
+
 namespace PHP_Parallel_Lint\PhpConsoleColor\Test;
 
 use PHP_Parallel_Lint\PhpConsoleColor\ConsoleColor;
@@ -309,4 +310,3 @@ class ConsoleColorTest extends TestCase
         }
     }
 }
-
