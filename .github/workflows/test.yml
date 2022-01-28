@@ -63,3 +63,34 @@ jobs:
 
       - name: Run unit tests
         run: composer phpunit
+
+  coverage:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          ini-values: zend.assertions=1, error_reporting=-1, display_errors=On
+          coverage: xdebug
+
+      - name: Install Composer dependencies - normal
+        uses: "ramsey/composer-install@v2"
+
+      - name: Run the unit tests with code coverage
+        run: composer coverage
+
+      - name: Install Coveralls
+        if: ${{ success() }}
+        run: composer require php-coveralls/php-coveralls:"^2.5.2" --no-interaction
+
+      - name: Upload coverage results to Coveralls
+        if: ${{ success() }}
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: vendor/bin/php-coveralls -v -x build/logs/clover.xml
