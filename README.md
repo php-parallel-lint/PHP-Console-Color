@@ -5,6 +5,7 @@ PHP Console Color
 [![CS](https://github.com/php-parallel-lint/PHP-Console-Color/actions/workflows/cs.yml/badge.svg)](https://github.com/php-parallel-lint/PHP-Console-Color/actions/workflows/cs.yml)
 [![Test](https://github.com/php-parallel-lint/PHP-Console-Color/actions/workflows/test.yml/badge.svg)](https://github.com/php-parallel-lint/PHP-Console-Color/actions/workflows/test.yml)
 [![License](https://poser.pugx.org/php-parallel-lint/php-console-color/license.svg)](https://packagist.org/packages/php-parallel-lint/php-console-color)
+[![Coverage Status](https://coveralls.io/repos/github/php-parallel-lint/PHP-Console-Color/badge.svg?branch=coveralls)](https://coveralls.io/github/php-parallel-lint/PHP-Console-Color?branch=coveralls)
 
 Simple library for creating colored console ouput.
 
