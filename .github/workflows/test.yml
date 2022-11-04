@@ -61,6 +61,9 @@ jobs:
       - name: Install Composer dependencies - normal
         if: ${{ matrix.experimental == false }}
         uses: "ramsey/composer-install@v2"
+        with:
+          # Bust the cache at least once a month - output format: YYYY-MM.
+          custom-cache-suffix: $(date -u "+%Y-%m")
 
       # For the PHP "nightly", we need to install with ignore platform reqs as not all dependencies allow it.
       - name: Install Composer dependencies - with ignore platform
@@ -68,6 +71,7 @@ jobs:
         uses: "ramsey/composer-install@v2"
         with:
           composer-options: --ignore-platform-reqs
+          custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: Lint
         run: composer phplint -- --checkstyle | cs2pr
@@ -92,6 +96,9 @@ jobs:
 
       - name: Install Composer dependencies - normal
         uses: "ramsey/composer-install@v2"
+        with:
+          # Bust the cache at least once a month - output format: YYYY-MM.
+          custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: Run the unit tests with code coverage
         run: composer coverage
