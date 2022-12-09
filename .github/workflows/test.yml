@@ -30,10 +30,11 @@ jobs:
           # PHP 7.4 is tested in coverage section
           - '8.0'
           - '8.1'
+          - '8.2'
         experimental: [false]
 
         include:
-          - php: '8.2'
+          - php: '8.3'
             experimental: true
 
     name: "Test on PHP ${{ matrix.php }}"
