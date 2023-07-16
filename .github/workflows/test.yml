@@ -104,10 +104,10 @@ jobs:
       - name: Run the unit tests with code coverage
         run: composer coverage
 
-      # Global install is used to prevent a conflict with the local composer.lock in PHP 8.0+.
+      # Global install is used to prevent a conflict with the local composer.lock.
       - name: Install Coveralls
         if: ${{ success() }}
-        run: composer global require php-coveralls/php-coveralls:"^2.5.3" --no-interaction
+        run: composer global require php-coveralls/php-coveralls:"^2.6.0" --no-interaction
 
       - name: Upload coverage results to Coveralls
         if: ${{ success() }}
