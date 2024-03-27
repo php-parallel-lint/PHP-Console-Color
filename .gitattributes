@@ -3,4 +3,5 @@
 .gitattributes export-ignore
 .gitignore export-ignore
 phpunit.xml.dist export-ignore
+phpunit10.xml.dist export-ignore
 phpcs.xml.dist export-ignore
