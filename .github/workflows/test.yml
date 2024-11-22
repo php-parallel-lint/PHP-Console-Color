@@ -32,10 +32,11 @@ jobs:
           - '8.1'
           - '8.2'
           - '8.3'
+          - '8.4'
         experimental: [false]
 
         include:
-          - php: '8.4'
+          - php: '8.5'
             experimental: true
 
     name: "Test on PHP ${{ matrix.php }}"
