@@ -95,6 +95,13 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        php:
+          - '7.4'
+
+    name: "Coverage on PHP ${{ matrix.php }}"
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -102,7 +109,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: ${{ matrix.php }}
           ini-values: zend.assertions=1, error_reporting=-1, display_errors=On
           coverage: xdebug
 
