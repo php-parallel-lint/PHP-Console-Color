@@ -7,9 +7,9 @@ PHP Console Color
 [![License](https://poser.pugx.org/php-parallel-lint/php-console-color/license.svg)](https://packagist.org/packages/php-parallel-lint/php-console-color)
 [![Coverage Status](https://coveralls.io/repos/github/php-parallel-lint/PHP-Console-Color/badge.svg?branch=master)](https://coveralls.io/github/php-parallel-lint/PHP-Console-Color?branch=master)
 
-Simple library for creating colored console ouput.
+Simple library for creating colored console output.
 
-See `example.php` how to use this library.
+See `example.php` for how to use this library.
 
 ![Example from Windows 10](https://user-images.githubusercontent.com/89590/40762008-687f909a-646c-11e8-88d6-e268a064be4c.png)
 
