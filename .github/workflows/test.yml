@@ -12,9 +12,13 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+# Permissions should be configured at the job level.
+permissions: {}
+
 jobs:
   test:
-    runs-on: ubuntu-latest
+    permissions:
+      contents: read # To clone the repo.
 
     strategy:
       matrix:
@@ -40,8 +44,10 @@ jobs:
           - php: '8.6'
             experimental: true
 
-    name: "Test on PHP ${{ matrix.php }}"
     continue-on-error: ${{ matrix.experimental }}
+
+    name: "Test on PHP ${{ matrix.php }}"
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -97,8 +103,10 @@ jobs:
         run: composer phpunit10
 
   coverage:
+    permissions:
+      contents: read # To clone the repo.
+
     needs: test
-    runs-on: ubuntu-latest
 
     strategy:
       matrix:
@@ -106,6 +114,7 @@ jobs:
           - '7.4'
 
     name: "Coverage on PHP ${{ matrix.php }}"
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
