@@ -8,27 +8,31 @@
             "email": "jakub.onderka@gmail.com"
         },
         {
-            "name" : "Contributors",
-            "homepage" : "https://github.com/php-parallel-lint/PHP-Console-Color/graphs/contributors"
+            "name": "Contributors",
+            "homepage": "https://github.com/php-parallel-lint/PHP-Console-Color/graphs/contributors"
         }
     ],
-    "autoload": {
-        "psr-4": {"PHP_Parallel_Lint\\PhpConsoleColor\\": "src/"}
-    },
-    "autoload-dev": {
-        "psr-4": {"PHP_Parallel_Lint\\PhpConsoleColor\\Test\\": "tests/"}
-    },
     "require": {
         "php": ">=5.3.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8.36 || ^5.7.21 || ^6.0 || ^7.0 || ^8.0 || ^9.0 || ^10.1",
+        "php-parallel-lint/php-code-style": "^2.0",
         "php-parallel-lint/php-parallel-lint": "^1.0",
         "php-parallel-lint/php-var-dump-check": "0.*",
-        "php-parallel-lint/php-code-style": "^2.0"
+        "phpunit/phpunit": "^4.8.36 || ^5.7.21 || ^6.0 || ^7.0 || ^8.0 || ^9.0 || ^10.1"
     },
     "replace": {
         "jakub-onderka/php-console-color": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "PHP_Parallel_Lint\\PhpConsoleColor\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PHP_Parallel_Lint\\PhpConsoleColor\\Test\\": "tests/"
+        }
     },
     "config": {
         "allow-plugins": {
@@ -36,7 +40,7 @@
         },
         "lock": false
     },
-    "scripts" : {
+    "scripts": {
         "phplint": [
             "@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --exclude vendor --exclude .git"
         ],
